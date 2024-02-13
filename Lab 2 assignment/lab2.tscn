@@ -1,0 +1,87 @@
+[gd_scene load_steps=9 format=3 uid="uid://b6by3v7ehm7sk"]
+
+[ext_resource type="Script" path="res://Move.gd" id="1_mflev"]
+
+[sub_resource type="Environment" id="Environment_6id5h"]
+background_mode = 1
+background_energy_multiplier = 4.41
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ao32m"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7u24w"]
+albedo_color = Color(0.192157, 0.27451, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aac4w"]
+albedo_color = Color(0.988235, 0.305882, 0.670588, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6c3d3"]
+albedo_color = Color(0.584314, 0.584314, 0.984314, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_0p781"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8y14v"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_6id5h")
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.82706, -0.0388946)
+light_color = Color(0.866667, 0.870588, 0.45098, 1)
+light_energy = 2.351
+light_volumetric_fog_energy = 0.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.521769, 0.853087, 0, -0.853087, -0.521769, 0, 7.17433, -12.5342)
+light_color = Color(0.866667, 0.870588, 0.45098, 1)
+light_energy = 2.351
+light_volumetric_fog_energy = 0.0
+
+[node name="Floor" type="CSGMesh3D" parent="."]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+snap = 0.127126
+mesh = SubResource("PlaneMesh_ao32m")
+material = SubResource("StandardMaterial3D_7u24w")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.999989, 0.00472982, 0, -0.00472982, 0.999989, 0, 1.73199, -2.29591)
+radius = 0.331
+height = 3.605
+material = SubResource("StandardMaterial3D_aac4w")
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="CSGCylinder3D"]
+transform = Transform3D(1, 0, 0, 0, 0.999989, -0.00472983, 0, 0.00472983, 0.999989, 0, 0.013414, -2.836)
+radius = 0.331
+height = 3.605
+material = SubResource("StandardMaterial3D_aac4w")
+
+[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="CSGCylinder3D"]
+transform = Transform3D(1, 0, 0, 0, 0.999989, -0.00472983, 0, 0.00472983, 0.999989, 0, 0.109058, -5.07915)
+radius = 0.331
+height = 3.605
+material = SubResource("StandardMaterial3D_aac4w")
+
+[node name="Move" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.90765, 0.873176)
+material_override = SubResource("StandardMaterial3D_6c3d3")
+mesh = SubResource("SphereMesh_0p781")
+skeleton = NodePath("Camera3D")
+surface_material_override/0 = SubResource("StandardMaterial3D_8y14v")
+script = ExtResource("1_mflev")
+
+[node name="Camera3D" type="Camera3D" parent="Move"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25333, 5.33374)
+
+[node name="Button" type="Button" parent="."]
+visible = false
+modulate = Color(0.784314, 0.921569, 1, 1)
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 248.0
+offset_top = -77.0
+offset_right = 669.0
+offset_bottom = 60.0
+grow_vertical = 2
+size_flags_horizontal = 0
